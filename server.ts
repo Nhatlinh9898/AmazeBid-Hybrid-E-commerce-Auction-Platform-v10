@@ -22,7 +22,13 @@ const isProd = process.env.NODE_ENV === 'production';
 
 function parseCorsOrigins(): string | string[] | boolean {
   const raw = process.env.CORS_ORIGIN?.trim();
-  if (!raw) return isProd ? false : true;
+  if (!raw) {
+    // Default CORS origins for hybrid architecture
+    if (isProd) {
+      return ['https://amazebid.co', 'https://www.amazebid.co'];
+    }
+    return true; // Allow all in development
+  }
   if (raw === '*') return true;
   const list = raw.split(',').map((s) => s.trim()).filter(Boolean);
   return list.length === 1 ? list[0]! : list;
