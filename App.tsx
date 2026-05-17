@@ -127,11 +127,11 @@ const InnerApp: React.FC = () => {
       for (let i = 0; i < retries; i++) {
         try {
           const [productsData, streamsData] = await Promise.all([
-            api.products.getAll(),
-            api.streams.getAll()
+            api.products.getAll().catch(() => ({ products: [] })),
+            api.streams.getAll().catch(() => ({ streams: [] }))
           ]);
           
-          const apiProducts = productsData.products;
+          const apiProducts = productsData.products || [];
           
           const storeCategoryToMainCategory: Record<string, string> = {
             'FOOD': 'Food & Beverages',
@@ -170,7 +170,7 @@ const InnerApp: React.FC = () => {
 
           const initialStoreProducts = mapStoreProducts(storeService.getStores());
           setProducts([...apiProducts, ...initialStoreProducts]);
-          setStreams(streamsData.streams);
+          setStreams(streamsData.streams || []);
 
           // Subscribe to store changes
           const unsubscribe = storeService.subscribe((stores) => {

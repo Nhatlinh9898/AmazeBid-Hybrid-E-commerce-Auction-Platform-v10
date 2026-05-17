@@ -5,10 +5,6 @@
   "framework": "vite",
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "https://amazebid-api.onrender.com/api/$1"
-    },
-    {
       "handle": "filesystem"
     },
     {
@@ -18,13 +14,7 @@
   ],
   "env": {
     "VITE_ADMIN_EMAIL": "Nhatlinhckm2016@gmail.com",
-    "VITE_API_URL": "https://api.amazebid.co",
+    "VITE_API_URL": "",
     "ADMIN_PASSWORD": "admin123"
-  },
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "https://amazebid-api.onrender.com/api/:path*"
-    }
-  ]
+  }
 }
