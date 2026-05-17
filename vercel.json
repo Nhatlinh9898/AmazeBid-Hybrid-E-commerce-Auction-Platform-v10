@@ -18,7 +18,8 @@
   ],
   "env": {
     "VITE_ADMIN_EMAIL": "Nhatlinhckm2016@gmail.com",
-    "VITE_API_URL": "https://api.amazebid.co"
+    "VITE_API_URL": "https://api.amazebid.co",
+    "ADMIN_PASSWORD": "admin123"
   },
   "rewrites": [
     {
